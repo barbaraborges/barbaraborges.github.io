@@ -7,7 +7,7 @@ module.exports = function (eleventyConfig) {
         }
         return d.toLocaleDateString();
     });
-    eleventyConfig.addPassthroughCopy("src/css");
+    eleventyConfig.addPassthroughCopy("src/assets");
     return {
         dir: {
             input: "src",
