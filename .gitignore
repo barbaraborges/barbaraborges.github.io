@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Build output
+public/
+
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
