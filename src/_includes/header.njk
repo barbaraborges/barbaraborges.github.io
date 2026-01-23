@@ -1,5 +1,25 @@
 <header>
-    <nav>
-        <a href="/">Home</a>
-    </nav>
+    Font Size
+    <button type="button" class="btn-round" onclick="changeFontSize(-0.25)" aria-label="Decrease font size">-</button>
+    <button type="button" class="btn-round" onclick="changeFontSize(0.25)" aria-label="Increase font size">+</button>
 </header>
+<script>
+    function changeFontSize(delta) {
+        const root = document.documentElement;
+        const min = 1;
+        const max = 3;
+        const step = 0.25;
+        // Prefer the inline value we previously set; fall back to computed.
+        const raw = root.style.getPropertyValue("--base-font-size") || getComputedStyle(root).getPropertyValue("--base-font-size");
+        const currentSize = Number.parseFloat(raw) || min;
+        const unclamped = currentSize + delta;
+        const clamped = Math.min(max, Math.max(min, unclamped));
+        // Avoid float drift (e.g. 1.0000000002) which can look like “bouncing”.
+        const rounded = Math.round(clamped / step) * step;
+        // No-op if nothing changes.
+        if (rounded === currentSize) 
+            return;
+        
+        root.style.setProperty("--base-font-size", String(rounded));
+    }
+</script>
