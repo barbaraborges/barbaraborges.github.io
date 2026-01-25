@@ -16,7 +16,12 @@
     <body>
         {% include "header.njk" %}
         <main>
-            {{ content | safe }}
+            <div>
+                {{ content | safe }}
+            </div>
+            <div>
+                {% include "avatar.njk" %}
+            </div>
         </main>
         {% include "footer.njk" %}
     </body>

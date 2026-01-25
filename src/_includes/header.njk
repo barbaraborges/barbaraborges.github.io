@@ -1,7 +1,27 @@
 <header>
-    Font Size
-    <button type="button" class="btn-round" onclick="changeFontSize(-0.25)" aria-label="Decrease font size">-</button>
-    <button type="button" class="btn-round" onclick="changeFontSize(0.25)" aria-label="Increase font size">+</button>
+    <div class="font-controls">
+        Font Size
+        <button type="button" class="btn-round" onclick="changeFontSize(-0.25)" aria-label="Decrease font size">-</button>
+        <button type="button" class="btn-round" onclick="changeFontSize(0.25)" aria-label="Increase font size">+</button>
+    </div>
+    <div class="theme-control">
+        <label for="theme-select">Theme</label>
+        <select id="theme-select" class="theme-select">
+            <option value="sunny-day">Sunny Day</option>
+            <option value="eclipse">Eclipse</option>
+        </select>
+    </div>
+    <div class="animation-control">
+        <label for="star-animation-toggle">Animation</label>
+        <button
+            type="button"
+            class="btn-round"
+            id="star-animation-toggle"
+            aria-label="Toggle star animation"
+            title="Toggle star rotation">
+            Off
+        </button>
+    </div>
 </header>
 <script>
     function changeFontSize(delta) {
@@ -21,5 +41,88 @@
             return;
         
         root.style.setProperty("--base-font-size", String(rounded));
+    }
+    // Star animation toggle
+    function initStarAnimation() {
+        const toggleButton = document.getElementById('star-animation-toggle');
+        const starImage = document.querySelector('.avatar-star');
+        if (! toggleButton || ! starImage) 
+            return;
+        
+        // Check if animation is enabled (stored in localStorage)
+        const isAnimated = localStorage.getItem('starAnimation') === 'true';
+        if (isAnimated) {
+            starImage.classList.add('rotating');
+            toggleButton.setAttribute('aria-pressed', 'true');
+            toggleButton.textContent = 'On';
+            console.log('Animation started on page load');
+        } else {
+            toggleButton.textContent = 'Off';
+        } toggleButton.addEventListener('click', function () {
+            const isRotating = starImage.classList.contains('rotating');
+            console.log('Toggle clicked. Current state:', isRotating);
+            if (isRotating) {
+                starImage.classList.remove('rotating');
+                toggleButton.setAttribute('aria-pressed', 'false');
+                toggleButton.textContent = 'Off';
+                localStorage.setItem('starAnimation', 'false');
+                console.log('Animation stopped');
+            } else {
+                starImage.classList.add('rotating');
+                toggleButton.setAttribute('aria-pressed', 'true');
+                toggleButton.textContent = 'On';
+                localStorage.setItem('starAnimation', 'true');
+                console.log('Animation started');
+            }
+        });
+    }
+    // Theme switcher
+    function initThemeSwitcher() {
+        const themeSelect = document.getElementById('theme-select');
+        const root = document.documentElement;
+        if (! themeSelect) 
+            return;
+        
+        // Default theme colors
+        const themes = {
+            'sunny-day': {
+                '--header-bg-color': '#F6EBC8',
+                '--bg-color': '#BFDAFF',
+                '--primary-color': '#04474F'
+            },
+            'eclipse': {
+                '--header-bg-color': '#592727',
+                '--bg-color': '#031630',
+                '--primary-color': '#fff'
+            }
+        };
+        // Apply theme
+        function applyTheme(themeName) {
+            const theme = themes[themeName];
+            if (theme) {
+                Object.entries(theme).forEach(([property, value]) => {
+                    root.style.setProperty(property, value);
+                });
+                localStorage.setItem('theme', themeName);
+            }
+        }
+        // Load saved theme or default
+        const savedTheme = localStorage.getItem('theme') || 'sunny-day';
+        themeSelect.value = savedTheme;
+        applyTheme(savedTheme);
+        // Handle theme change
+        themeSelect.addEventListener('change', function () {
+            applyTheme(this.value);
+        });
+    }
+    // Wait for DOM to be ready
+    function initAll() {
+        initStarAnimation();
+        initThemeSwitcher();
+    }
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAll);
+    } else { // DOM is already ready
+        initAll();
     }
 </script>
