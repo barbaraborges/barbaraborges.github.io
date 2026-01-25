@@ -3,7 +3,7 @@
     --primary-color: #04474F;
     --secondary-color: #D15400;
     --tertiary-color: #FFFFFF;
-    --header-bd-color: #F6EBC8;
+    --header-bg-color: #F6EBC8;
     --base-font-size: 1;
     font-size: calc(var(--base-font-size) * 1rem);
 }
@@ -28,7 +28,9 @@ body {
     color: var(--primary-color);
     margin: 0;
     padding: 0;
-    height: 100vh;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -103,6 +105,8 @@ header {
 main {
     padding: 1em 2em;
     height: calc(100vh - 8em);
+    display: grid;
+    grid-template-columns: 1fr auto;
 }
 
 nav {
