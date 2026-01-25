@@ -2,10 +2,10 @@
 node_modules/
 
 # Build output
-public/
+public/**
 
 # macOS
-.DS_Store
+**/.DS_Store
 .DS_Store?
 ._*
 .Spotlight-V100
