@@ -1,0 +1,10 @@
+{
+    "name": "barbaraborges",
+    "compatibility_date": "2026-01-26",
+    "main": "public/index.html",
+    "assets": {
+        "assets": {
+            "directory": "public/"
+        }
+    }
+}
