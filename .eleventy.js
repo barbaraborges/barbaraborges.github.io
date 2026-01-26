@@ -8,11 +8,11 @@ module.exports = function (eleventyConfig) {
         return d.toLocaleDateString();
     });
     eleventyConfig.addPassthroughCopy("src/assets");
-    eleventyConfig.addPassthroughCopy("src/assets/files/Barbara_Borges_CV_Web.pdf");
+    eleventyConfig.addPassthroughCopy("static/files");
     return {
         dir: {
             input: "src",
-            output: "_site"
+            output: "static"
         }
     }
 }
