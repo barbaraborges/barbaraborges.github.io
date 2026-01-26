@@ -1,51 +1,48 @@
+const reduceFontSizeBtn = document.getElementById('reduce-font-size-btn');
+const increaseFontSizeBtn = document.getElementById('increase-font-size-btn');
+
+let showReduceFontSizeBtn = true;
+let showIncreaseFontSizeBtn = true;
+
 function changeFontSize(delta) {
     const root = document.documentElement;
 
     // Get the current max and min padding based on viewport width
-    // Mobile (< 768px): max = 1, min = 0.25 (allows padding to decrease)
-    // Desktop (>= 1280px): max = 4, min = 1
-    // This matches the CSS media query breakpoint
+    // Mobile and Small Screens (< 1024px): max = 1, min = 0.25
+    // Desktop (>= 1024px): max = 4, min = 0.25
     const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
-    const isDesktop = viewportWidth >= 768;
-    const maxBasePaddingMultiplier = isDesktop ? 4 : 1;
-    const minBasePaddingMultiplier = isDesktop ? 1 : 0.25;
+    const isDesktop = viewportWidth >= 1024;
+   
     const minFontSizeMultiplier = 1;
-    const maxFontSizeMultiplier = isDesktop ? 3 : 1.5;
-    const step = 0.25;
+    const maxFontSizeMultiplier = isDesktop ? 2.5 : 1.5;
+
+    const maxBasePaddingMultiplier = isDesktop ? 4 : 0.25;
+    const minBasePaddingMultiplier = 0.25;
 
     // Font size
-    // Prefer the inline value we previously set; fall back to computed
     const initialFontSize = root.style.getPropertyValue("--base-font-size") || getComputedStyle(root).getPropertyValue("--base-font-size");
-    const currentFontSize = Number.parseFloat(initialFontSize) || minFontSizeMultiplier;
-    const unclampedFontSize = currentFontSize + delta;
-    const clampedFontSize = Math.min(maxFontSizeMultiplier, Math.max(minFontSizeMultiplier, unclampedFontSize));
-    // Avoid float drift (e.g. 1.0000000002) which can look like “bouncing”.
-    const roundedFontSize = Math.round(clampedFontSize / step) * step;
-    // No-op if nothing changes.
-    if (roundedFontSize === currentFontSize) 
-        return;
+    const currentFontSize = Number.parseFloat(initialFontSize);
 
-    root.style.setProperty("--base-font-size", String(roundedFontSize));
+    const newFontSize = Math.max(minFontSizeMultiplier, Math.min(currentFontSize + delta, maxFontSizeMultiplier));
 
+    root.style.setProperty("--base-font-size", String(newFontSize));
+
+    // Update buttons visibility
+    showIncreaseFontSizeBtn = newFontSize >= maxFontSizeMultiplier ? false : true;
+    showReduceFontSizeBtn = newFontSize <= minFontSizeMultiplier ? false : true;
+
+    reduceFontSizeBtn.style.display = showReduceFontSizeBtn ? 'inline-flex' : 'none';
+    increaseFontSizeBtn.style.display = showIncreaseFontSizeBtn ? 'inline-flex' : 'none';
 
     // Calculate padding inversely proportional to font size
     // When font size increases, padding decreases proportionally
-    const fontSizeRange = maxFontSizeMultiplier - minFontSizeMultiplier;
+    const fontRange = maxFontSizeMultiplier - minFontSizeMultiplier;
     const paddingRange = maxBasePaddingMultiplier - minBasePaddingMultiplier;
-    // Calculate progress: 0 when fontSize is at min (1), 1 when fontSize is at max (3)
-    const fontSizeProgress = fontSizeRange > 0 ? (roundedFontSize - minFontSizeMultiplier) / fontSizeRange : 0;
+    const ratio = (newFontSize - minFontSizeMultiplier) / fontRange;
+    const newPaddingSize = maxBasePaddingMultiplier - (ratio * paddingRange);
+    const clampedPaddingSize = Math.max(minBasePaddingMultiplier, Math.min(newPaddingSize, maxBasePaddingMultiplier));
     
-    // Inverse relationship: when progress is 0 (fontSize=min), padding=max; when progress is 1 (fontSize=max), padding=min
-    // Formula: padding = maxPadding - (progress * paddingRange)
-    // On desktop (maxPadding=4, minPadding=1): fontSize=1 → padding=4, fontSize=2 → padding=2.5, fontSize=3 → padding=1
-    // On mobile (maxPadding=1, minPadding=0.25): fontSize=1 → padding=1, fontSize=2 → padding=0.625, fontSize=3 → padding=0.25
-    const calculatedPadding = maxBasePaddingMultiplier - (fontSizeProgress * paddingRange);
-    // Avoid float drift (e.g. 1.0000000002) which can look like “bouncing”.
-    const roundedBasePadding = Math.round(calculatedPadding / step) * step;
-    const clampedBasePadding = Math.min(maxBasePaddingMultiplier, Math.max(minBasePaddingMultiplier, roundedBasePadding));
-    
-    root.style.setProperty("--base-padding", String(clampedBasePadding));
-    
+    root.style.setProperty("--base-padding", String(clampedPaddingSize));
 }
 // Star animation toggle
 function initStarAnimation() {

@@ -8,7 +8,7 @@
     font-size: calc(var(--base-font-size) * 1rem);
     --base-padding: 1;
 
-    @media (min-width: 1280px) {
+    @media (min-width: 1024px) {
         --base-padding: 4;
     }
 }
@@ -109,6 +109,10 @@ button.btn-round,
     vertical-align: middle;
 }
 
+#reduce-font-size-btn {
+    display: none;
+}
+
 .cta-btn-wrapper {
     display: flex;
 }
@@ -140,7 +144,7 @@ header {
     background-color: var(--secondary-color);
     color: var(--tertiary-color);
     border: 1px solid transparent;
-    padding: 10px 20px;
+    padding: 0.75rem 1.25rem;
     font-size: 1rem;
     font-family: inherit;
     line-height: 1;
@@ -148,7 +152,6 @@ header {
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
     align-self: flex-end;
-    margin-top: 0.5rem;
 
     @media (max-width: 767px) {
         display: inline-block;
@@ -191,10 +194,6 @@ header {
         margin: 0;
         gap: 0.5em;
     }
-}
-
-.animation-controls {
-    margin-bottom: 0;
 }
 
 .theme-select {
