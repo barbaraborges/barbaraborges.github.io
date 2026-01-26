@@ -22,7 +22,7 @@
 
 @font-face {
     font-family: 'Lexend';
-    src: url('/assets/fonts/Lexend/Lexend-Regular.ttf') format('truetype');
+    src: url('/assets/fonts/Lexend/Lexend-VariableFont_wght.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -241,6 +241,7 @@ main {
     grid-template-columns: 1fr;
     font-size: 1.2rem;
     text-wrap: pretty;
+    font-variation-settings: "wght" 275;
 
     @media (min-width: 768px) {
         grid-template-columns: 1fr auto;
