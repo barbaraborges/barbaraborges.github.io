@@ -109,6 +109,16 @@ button.btn-round,
     vertical-align: middle;
 }
 
+.cta-btn-wrapper {
+    display: flex;
+}
+
+.cta-btn-wrapper a {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
 /* Custom dropdown component */
 .custom-select {
     position: relative;
@@ -327,6 +337,7 @@ main {
     display: grid;
     grid-template-columns: 1fr;
     font-size: 1.2rem;
+    text-wrap: pretty;
 
     @media (min-width: 768px) {
         grid-template-columns: 1fr auto;
