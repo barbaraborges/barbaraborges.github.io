@@ -117,6 +117,10 @@ button.btn-round,
     text-align: center;
     width: 100%;
     margin-bottom: 1.5rem;
+
+    @media (min-width: 768px) {
+        width: auto;
+    }
 }
 
 /* Header */
@@ -128,14 +132,6 @@ header {
     font-family: Lexend, Arial, sans-serif;
     display: flex;
     flex-direction: column;
-    position: relative;
-
-    @media (min-width: 768px) {
-        display: inline-flex;
-        width: 100%;
-        align-items: center;
-        gap: 2em;
-    }
 }
 
 .header-toggle-btn {
@@ -171,7 +167,6 @@ header {
     width: 100%;
 
     @media (min-width: 768px) {
-        display: inline-flex;
         flex-direction: row;
         align-items: center;
         gap: 2em;
@@ -191,6 +186,11 @@ header {
     align-items: center;
     justify-content: space-between;
     margin-bottom: 0.25em;
+
+    @media (min-width: 768px) {
+        margin: 0;
+        gap: 0.5em;
+    }
 }
 
 .animation-controls {
