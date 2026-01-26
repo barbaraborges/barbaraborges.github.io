@@ -45,6 +45,8 @@ h6 {
     color: var(--secondary-color);
     font-family: 'Cherry Bomb One', cursive;
     text-shadow: 2px 2px 0px var(--tertiary-color);
+    margin: 0 0 2rem 0;
+    line-height: 3rem;
 }
 
 h1 {
@@ -204,6 +206,8 @@ button.btn-round,
     margin-bottom: 0;
 }
 
+/* Header */
+
 header {
     background-color: var(--header-bg-color);
     color: var(--primary-color);
@@ -221,13 +225,16 @@ header {
 }
 
 .font-controls,
-.theme-control,
-.animation-control {
+.theme-controls,
+.animation-controls {
     display: inline-flex;
     align-items: center;
     justify-content: space-between;
-    gap: 0.5em;
-    column-gap: 1em;
+    margin-bottom: 0.25em;
+}
+
+.animation-controls {
+    margin-bottom: 0;
 }
 
 .theme-select {
@@ -268,14 +275,15 @@ header {
 }
 
 main {
-    padding: 1rem calc(var(--base-padding) * 2rem);;
-    height: calc(100vh - 10em);
+    padding: 1rem calc(var(--base-padding) * 2rem);
+    min-height: calc(100vh - 12em);
     display: grid;
     grid-template-columns: 1fr;
     font-size: 1.2rem;
 
     @media (min-width: 768px) {
         grid-template-columns: 1fr auto;
+        min-height: calc(100vh - 10em);
     }
 }
 
@@ -296,6 +304,11 @@ footer {
     font-size: 0.8rem;
 }
 
+.avatar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 .avatar-composition {
     position: relative;
