@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>
+            
+                Home
+        </title>
+        
+        <link rel="stylesheet" href="/assets/css/styles.css">
+        <script src="/assets/scripts/script.js" defer></script>
+    </head>
+    <body>
+        <header>
+    <div class="header-controls" id="header-controls">
+        <div class="font-controls">
+            Font Size
+            <div class="font-controls-wrapper">
+                <button
+                    type="button"
+                    id="reduce-font-size-btn"
+                    class="btn-round"
+                    onclick="changeFontSize(-0.25)"
+                    aria-label="Decrease font size">-</button>
+                <button
+                    type="button"
+                    id="increase-font-size-btn"
+                    class="btn-round"
+                    onclick="changeFontSize(0.25)"
+                    aria-label="Increase font size">+</button>
+            </div>
+        </div>
+        <div class="theme-controls">
+            <label for="theme-select">Theme</label>
+            <select id="theme-select" class="theme-select">
+                <option value="sunny-day">Sunny Day</option>
+                <option value="eclipse">Eclipse</option>
+            </select>
+        </div>
+        <div class="animation-controls">
+            <label for="star-animation-toggle">Animation</label>
+            <button
+                type="button"
+                class="btn-round"
+                id="star-animation-toggle"
+                aria-label="Toggle star animation"
+                title="Toggle star rotation">
+                Off
+            </button>
+        </div>
+    </div>
+    <button
+        type="button"
+        class="header-toggle-btn"
+        id="header-toggle"
+        aria-label="Toggle page settings"
+        aria-expanded="true">
+        Hide controls
+    </button>
+</header>
+        <main>
+            <div>
+                <h1>Bárbara Borges</h1>
+<p>Hi, I'm a Product Software Engineer with focus on Frontend development. I have a passion for building performant and accessible products.</p>
+<div class="cta-btn-wrapper">
+    <a class="btn" href="/src/assets/files/Barbara_Borges_CV_Web.pdf">Check out my complete CV</a>
+</div>
+
+            </div>
+            <div class="avatar-container">
+                <div class="avatar-composition">
+    <img src="/assets/pictures/star.png" alt="" class="avatar-star" aria-hidden="true">
+    <img
+        src="/assets/pictures/avatar.jpg"
+        alt="A latina-looking woman wearing glasses and smiling - that's me!"
+        class="avatar-image">
+</div>
+            </div>
+        </main>
+        <footer>
+    <p>&copy; 2026 All Rights Reserved</p>
+</footer>
+    </body>
+</html>
