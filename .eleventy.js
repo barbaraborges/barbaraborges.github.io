@@ -8,7 +8,7 @@ module.exports = function (eleventyConfig) {
         return d.toLocaleDateString();
     });
     eleventyConfig.addPassthroughCopy("src/assets");
-    eleventyConfig.addPassthroughCopy("static/files");
+    eleventyConfig.addPassthroughCopy("**.pdf");
     return {
         dir: {
             input: "src",
