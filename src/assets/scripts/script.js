@@ -102,10 +102,43 @@ function initThemeSwitcher() {
         applyTheme(this.value);
     });
 }
+// Header toggle for mobile
+function initHeaderToggle() {
+    const toggleButton = document.getElementById('header-toggle');
+    const headerControls = document.getElementById('header-controls');
+    
+    if (!toggleButton || !headerControls) return;
+    
+    // Check if controls should be collapsed (stored in localStorage)
+    const isCollapsed = localStorage.getItem('headerCollapsed') === 'true';
+    if (isCollapsed) {
+        headerControls.classList.add('collapsed');
+        toggleButton.textContent = 'Show controls';
+        toggleButton.setAttribute('aria-expanded', 'false');
+    }
+    
+    toggleButton.addEventListener('click', function() {
+        const isCollapsed = headerControls.classList.contains('collapsed');
+        
+        if (isCollapsed) {
+            headerControls.classList.remove('collapsed');
+            toggleButton.textContent = 'Hide Settings';
+            toggleButton.setAttribute('aria-expanded', 'true');
+            localStorage.setItem('headerCollapsed', 'false');
+        } else {
+            headerControls.classList.add('collapsed');
+            toggleButton.textContent = 'Show Settings';
+            toggleButton.setAttribute('aria-expanded', 'false');
+            localStorage.setItem('headerCollapsed', 'true');
+        }
+    });
+}
+
 // Wait for DOM to be ready
 function initAll() {
     initStarAnimation();
     initThemeSwitcher();
+    initHeaderToggle();
 }
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initAll);

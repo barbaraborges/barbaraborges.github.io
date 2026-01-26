@@ -215,12 +215,59 @@ header {
     font-family: Lexend, Arial, sans-serif;
     display: flex;
     flex-direction: column;
+    position: relative;
 
     @media (min-width: 768px) {
         display: inline-flex;
         width: 100%;
         align-items: center;
         gap: 2em;
+    }
+}
+
+.header-toggle-btn {
+    display: none;
+    border-radius: 40px;
+    background-color: var(--secondary-color);
+    color: var(--tertiary-color);
+    border: 1px solid transparent;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-family: inherit;
+    line-height: 1;
+    box-sizing: content-box;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    align-self: flex-end;
+    margin-top: 0.5rem;
+
+    @media (max-width: 767px) {
+        display: inline-block;
+    }
+}
+
+.header-toggle-btn:hover {
+    background-color: var(--tertiary-color);
+    color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+}
+
+.header-controls {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    @media (min-width: 768px) {
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 2em;
+    }
+}
+
+.header-controls.collapsed {
+    @media (max-width: 767px) {
+        display: none;
     }
 }
 
