@@ -8,11 +8,11 @@ module.exports = function (eleventyConfig) {
         return d.toLocaleDateString();
     });
     eleventyConfig.addPassthroughCopy("src/assets");
-    eleventyConfig.addPassthroughCopy("**.pdf");
+    eleventyConfig.addPassthroughCopy("src/static/files");
     return {
         dir: {
             input: "src",
-            output: "static"
+            output: "_site"
         }
     }
 }
