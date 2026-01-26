@@ -3,6 +3,6 @@
     "@11ty/eleventy": "^3.1.2"
   },
   "scripts": {
-    "build": "npx @11ty/eleventy",
+    "build": "npx @11ty/eleventy"
   }
 }
