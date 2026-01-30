@@ -9,7 +9,7 @@
     --base-padding: 1;
 
     @media (min-width: 1024px) {
-        --base-padding: 4;
+        --base-padding: 8;
     }
 }
 
@@ -241,11 +241,16 @@ main {
     font-size: 1.2rem;
     text-wrap: pretty;
     font-variation-settings: "wght" 275;
+    line-height: 1.5em;
 
     @media (min-width: 768px) {
         grid-template-columns: 1fr auto;
         min-height: calc(100vh - 10em);
     }
+}
+
+strong {
+    font-variation-settings: "wght" 425;
 }
 
 nav {
